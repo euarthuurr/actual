@@ -5,13 +5,13 @@
 ###################################################
 
 services:
-  actual-development:
-    build: .
-    image: actual-development
-    environment:
-      - HTTPS
+  actual:
+    image: actualbudget/actual-server:latest
     ports:
-      - '3001:3001'
+      - "5006:5006"
     volumes:
-      - '.:/app'
-    restart: 'no'
+      - actual_data:/data
+    restart: unless-stopped
+
+volumes:
+  actual_data:
